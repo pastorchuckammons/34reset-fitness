@@ -528,23 +528,27 @@
         <div style="display:flex;flex-direction:column;gap:12px;">
           <div style="display:flex;gap:12px;align-items:flex-start;">
             <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;"></div>
-            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">Strength always before cardio on combo days</div>
+            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">Time under tension: 4 count down — 2 second pause — 2 count up. 6–10 reps per set.</div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start;">
             <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;"></div>
-            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">Leg days pair with walk, not run</div>
+            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">HIIT: 20 min. 40 sec on, 20 sec rest. Burpees, jump squats, mountain climbers, high knees.</div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start;">
             <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;"></div>
-            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">Target 1,800–1,950 cal/day, 140–160g protein</div>
+            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">Carb cycle: add sweet potato or brown rice on Mon, Wed, Fri training days. Low carb all other days.</div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start;">
             <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;"></div>
-            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">Increase dumbbell weight when sets feel easy</div>
+            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">Strength before HIIT always. Never HIIT before lifting.</div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start;">
             <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;"></div>
-            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">The deficit removes the fat. Exercise builds what's underneath.</div>
+            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">Target 1,600 verified calories daily. 140g protein minimum. Increase weight when sets feel easy.</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;"></div>
+            <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">The deficit removes the fat. Time under tension builds what is underneath.</div>
           </div>
         </div>
       </div>
@@ -553,455 +557,484 @@
 </div>
 
 <script>
+const TUT = "TUT: 4 count down — 2 sec pause — 2 count up. 6–10 reps.";
+const HIIT_NOTE = "30 min guided HIIT — use Tiff x Dan on YouTube. Choose 20–40 min based on energy level.";
+
 const DAYS = [
   {
     date: "June 13",
     dow: "Saturday",
     title: "Strength A + Recovery",
     types: ["strength"],
-    note: "Already ran 4 miles today. Do strength tonight.",
+    note: "Already ran 4 miles today. Do strength tonight. Begin TUT tempo on all sets.",
     exercises: [
-      { name: "Push-ups", detail: "4 sets to failure", link: null },
-      { name: "Dumbbell Floor Press", detail: "3 sets × 12 reps", link: null },
-      { name: "Dumbbell Shoulder Press", detail: "3 sets × 12 reps", link: null },
-      { name: "Tricep Kickbacks", detail: "3 sets × 15 reps", link: null },
+      { name: "Push-ups", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Floor Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Shoulder Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Tricep Kickbacks", detail: "3 sets × 6–10 reps | " + TUT, link: null },
       { name: "Plank", detail: "3 sets × 60 seconds", link: null },
-      { name: "Dead Bug", detail: "3 sets × 10 each side", link: null },
-      { name: "Bicycle Crunches", detail: "3 sets × 20 reps", link: null },
+      { name: "Dead Bug", detail: "3 sets × 10 each side | slow and controlled", link: null },
+      { name: "Bicycle Crunches", detail: "3 sets × 20 reps | controlled tempo", link: null },
       { name: "Watch: Athlean-X", detail: "\"The Perfect Abs Workout\"", link: "https://www.youtube.com/results?search_query=athlean-x+perfect+abs+workout" },
     ]
   },
   {
     date: "June 14",
     dow: "Sunday",
-    title: "Walk — Rest Day",
+    title: "Mild Recovery Walk",
     types: ["walk"],
-    note: "30–45 minute brisk walk. Protect your margin today.",
+    note: "Sunday is recovery. Light pace only. Protect your margin.",
     exercises: [
-      { name: "Brisk Walk", detail: "30–45 minutes", link: null },
+      { name: "Recovery Walk", detail: "1.5–3.1 miles — easy pace, no pushing", link: null },
     ]
   },
   {
     date: "June 15",
     dow: "Monday",
-    title: "Strength B + Run",
+    title: "Strength A + HIIT",
     types: ["strength","run"],
-    note: "Sabbatical begins. Strength first, then run.",
+    note: "Sabbatical begins. Strength first, HIIT second. Carb day — add sweet potato or brown rice to a meal.",
     exercises: [
-      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 12 reps", link: null },
-      { name: "Dumbbell Bicep Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Renegade Rows", detail: "3 sets × 8 each side", link: null },
-      { name: "Hammer Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Superman Holds", detail: "3 sets × 10 reps", link: null },
-      { name: "Run", detail: "3–4 miles", link: null },
+      { name: "Push-ups", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Floor Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Shoulder Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Tricep Kickbacks", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Plank", detail: "3 sets × 60 seconds", link: null },
+      { name: "Dead Bug", detail: "3 sets × 10 each side | slow and controlled", link: null },
+      { name: "Bicycle Crunches", detail: "3 sets × 20 reps | controlled tempo", link: null },
+      { name: "HIIT Circuit", detail: HIIT_NOTE, link: null },
+      { name: "Evening Walk", detail: "1.5 miles — easy pace, enjoy it", link: null },
     ]
   },
   {
     date: "June 16",
     dow: "Tuesday",
-    title: "Walk + Core Focus",
-    types: ["walk","core"],
-    note: null,
+    title: "Walk — Active Recovery",
+    types: ["walk"],
+    note: "Low carb day. Long walk only. Let the body recover from yesterday.",
     exercises: [
-      { name: "Brisk Walk", detail: "30–45 minutes", link: null },
-      { name: "Watch: Athlean-X", detail: "\"The Perfect Core Workout\"", link: "https://www.youtube.com/results?search_query=athlean-x+perfect+core+workout" },
-      { name: "Dead Bug", detail: "3 sets × 10 each side", link: null },
-      { name: "Leg Raises", detail: "3 sets × 15 reps", link: null },
-      { name: "Russian Twists", detail: "3 sets × 20 reps", link: null },
-      { name: "Side Plank", detail: "3 sets × 30 seconds each side", link: null },
+      { name: "Brisk Walk", detail: "5–6 miles", link: null },
+      { name: "Athlean-X Abs", detail: "5 min ab circuit — choose any free workout on the Athlean-X app or YouTube", link: "https://www.youtube.com/results?search_query=athlean-x+5+minute+ab+workout" },
     ]
   },
   {
     date: "June 17",
     dow: "Wednesday",
-    title: "Strength C + Walk",
-    types: ["strength","walk"],
-    note: "Leg day. Walk instead of run — protect your joints.",
+    title: "Strength B + Jog + Recovery Walk",
+    types: ["strength","run","walk"],
+    note: "Carb day. Strength first, then jog, then recovery walk to cool down.",
     exercises: [
-      { name: "Goblet Squats", detail: "4 sets × 15 reps", link: null },
-      { name: "Romanian Deadlifts", detail: "3 sets × 12 reps", link: null },
-      { name: "Reverse Lunges", detail: "3 sets × 10 each leg", link: null },
-      { name: "Lateral Lunges", detail: "3 sets × 10 each side", link: null },
-      { name: "Leg Raises", detail: "3 sets × 15 reps", link: null },
-      { name: "Russian Twists (dumbbell)", detail: "3 sets × 20 reps", link: null },
-      { name: "Side Plank", detail: "3 sets × 30 seconds each side", link: null },
-      { name: "Walk", detail: "30–45 minutes", link: null },
+      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Bicep Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Renegade Rows", detail: "3 sets × 6–8 each side | " + TUT, link: null },
+      { name: "Hammer Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Superman Holds", detail: "3 sets × 10 reps | 2 sec hold at top", link: null },
+      { name: "Jog", detail: "3 miles — steady pace", link: null },
+      { name: "Recovery Walk", detail: "3.1 miles — easy pace after jog", link: null },
     ]
   },
   {
     date: "June 18",
     dow: "Thursday",
-    title: "Run + Stretching",
-    types: ["run"],
-    note: null,
+    title: "Walk — Active Recovery",
+    types: ["walk"],
+    note: "Low carb day. Long walk only. Full body stretch when done.",
     exercises: [
-      { name: "Run", detail: "3–4 miles", link: null },
-      { name: "Full Body Stretch", detail: "10–15 minutes", link: null },
+      { name: "Brisk Walk", detail: "5–6 miles", link: null },
+      { name: "Full Body Stretch", detail: "10–15 minutes after walk", link: null },
+      { name: "Athlean-X Abs", detail: "5 min ab circuit — choose any free workout on the Athlean-X app or YouTube", link: "https://www.youtube.com/results?search_query=athlean-x+5+minute+ab+workout" },
       { name: "Watch: Athlean-X", detail: "\"Stretching Routine You Should Do Every Day\"", link: "https://www.youtube.com/results?search_query=athlean-x+daily+stretching+routine" },
     ]
   },
   {
     date: "June 19",
     dow: "Friday",
-    title: "Strength A + Run",
+    title: "Strength C + HIIT",
     types: ["strength","run"],
+    note: "Carb day. Leg and core strength first, then HIIT.",
     exercises: [
-      { name: "Push-ups", detail: "4 sets to failure", link: null },
-      { name: "Dumbbell Floor Press", detail: "3 sets × 12 reps", link: null },
-      { name: "Dumbbell Shoulder Press", detail: "3 sets × 12 reps", link: null },
-      { name: "Tricep Kickbacks", detail: "3 sets × 15 reps", link: null },
-      { name: "Plank", detail: "3 sets × 60 seconds", link: null },
-      { name: "Bicycle Crunches", detail: "3 sets × 20 reps", link: null },
-      { name: "Dead Bug", detail: "3 sets × 10 each side", link: null },
-      { name: "Run", detail: "3 miles", link: null },
+      { name: "Goblet Squats", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Romanian Deadlifts", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Reverse Lunges", detail: "3 sets × 6–8 each leg | " + TUT, link: null },
+      { name: "Lateral Lunges", detail: "3 sets × 6–8 each side | " + TUT, link: null },
+      { name: "Leg Raises", detail: "3 sets × 15 reps | slow and controlled", link: null },
+      { name: "Russian Twists (dumbbell)", detail: "3 sets × 20 reps | controlled tempo", link: null },
+      { name: "Side Plank", detail: "3 sets × 30 seconds each side", link: null },
+      { name: "HIIT Circuit", detail: HIIT_NOTE, link: null },
+      { name: "Evening Walk", detail: "1.5 miles — easy pace, enjoy it", link: null },
     ]
   },
   {
     date: "June 20",
     dow: "Saturday",
-    title: "Walk — Active Recovery",
-    types: ["walk"],
+    title: "Jog + Recovery Walk",
+    types: ["run","walk"],
+    note: "Low carb day. Jog first, then recovery walk to cool down.",
     exercises: [
-      { name: "Walk", detail: "45 minutes", link: null },
+      { name: "Jog", detail: "4 miles — steady pace", link: null },
+      { name: "Recovery Walk", detail: "3.1 miles — easy pace after jog", link: null },
       { name: "Light Stretching", detail: "10 minutes", link: null },
     ]
   },
   {
     date: "June 21",
     dow: "Sunday",
-    title: "Walk — Father's Day",
+    title: "Mild Recovery Walk — Father's Day",
     types: ["walk"],
-    note: "Father's Day. Reconstructing Dad pre-orders open today. Protect your margin.",
+    note: "Father's Day. Reconstructing Dad pre-orders open today. Protect your margin. Easy pace only.",
     exercises: [
-      { name: "Brisk Walk", detail: "30 minutes", link: null },
+      { name: "Recovery Walk", detail: "1.5–3.1 miles — easy pace", link: null },
     ]
   },
+  // WEEK 2
   {
     date: "June 22",
     dow: "Monday",
-    title: "Strength B + Run",
+    title: "Strength A + HIIT",
     types: ["strength","run"],
+    note: "Carb day. Strength first, HIIT second. Increase weight if last week felt manageable.",
     exercises: [
-      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 12 reps", link: null },
-      { name: "Dumbbell Bicep Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Renegade Rows", detail: "3 sets × 8 each side", link: null },
-      { name: "Hammer Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Superman Holds", detail: "3 sets × 10 reps", link: null },
-      { name: "Run", detail: "3–4 miles", link: null },
+      { name: "Push-ups", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Floor Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Shoulder Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Tricep Kickbacks", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Plank", detail: "3 sets × 60 seconds", link: null },
+      { name: "Dead Bug", detail: "3 sets × 10 each side | slow and controlled", link: null },
+      { name: "Bicycle Crunches", detail: "3 sets × 20 reps | controlled tempo", link: null },
+      { name: "HIIT Circuit", detail: HIIT_NOTE, link: null },
+      { name: "Evening Walk", detail: "1.5 miles — easy pace, enjoy it", link: null },
     ]
   },
   {
     date: "June 23",
     dow: "Tuesday",
-    title: "Walk + Core Focus",
-    types: ["walk","core"],
+    title: "Walk — Active Recovery",
+    types: ["walk"],
+    note: "Low carb day. Long walk only.",
     exercises: [
-      { name: "Walk", detail: "30–45 minutes", link: null },
-      { name: "Watch: Athlean-X", detail: "\"Oblique Workout You're Not Doing\"", link: "https://www.youtube.com/results?search_query=athlean-x+oblique+workout" },
-      { name: "Side Plank with Hip Dip", detail: "3 sets × 12 each side", link: null },
-      { name: "Bicycle Crunches", detail: "3 sets × 25 reps", link: null },
-      { name: "Dead Bug", detail: "3 sets × 12 each side", link: null },
-      { name: "Leg Raises", detail: "3 sets × 15 reps", link: null },
+      { name: "Brisk Walk", detail: "5–6 miles", link: null },
+      { name: "Athlean-X Abs", detail: "5 min ab circuit — choose any free workout on the Athlean-X app or YouTube", link: "https://www.youtube.com/results?search_query=athlean-x+5+minute+ab+workout" },
     ]
   },
   {
     date: "June 24",
     dow: "Wednesday",
-    title: "Strength C + Walk",
-    types: ["strength","walk"],
-    note: "Leg day. Walk instead of run.",
+    title: "Strength B + Jog + Recovery Walk",
+    types: ["strength","run","walk"],
+    note: "Carb day. Strength first, then jog, then recovery walk.",
     exercises: [
-      { name: "Goblet Squats", detail: "4 sets × 15 reps", link: null },
-      { name: "Romanian Deadlifts", detail: "3 sets × 12 reps", link: null },
-      { name: "Reverse Lunges", detail: "3 sets × 10 each leg", link: null },
-      { name: "Lateral Lunges", detail: "3 sets × 10 each side", link: null },
-      { name: "Russian Twists", detail: "3 sets × 20 reps", link: null },
-      { name: "Side Plank", detail: "3 sets × 30 seconds each side", link: null },
-      { name: "Walk", detail: "30–45 minutes", link: null },
+      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Bicep Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Renegade Rows", detail: "3 sets × 6–8 each side | " + TUT, link: null },
+      { name: "Hammer Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Superman Holds", detail: "3 sets × 10 reps | 2 sec hold at top", link: null },
+      { name: "Jog", detail: "3 miles — steady pace", link: null },
+      { name: "Recovery Walk", detail: "3.1 miles — easy pace after jog", link: null },
     ]
   },
   {
     date: "June 25",
     dow: "Thursday",
-    title: "Run + Stretching",
-    types: ["run"],
-    note: "Longer run day. Push the distance.",
+    title: "Walk — Active Recovery",
+    types: ["walk"],
+    note: "Low carb day. Long walk only. Full body stretch when done.",
     exercises: [
-      { name: "Run", detail: "4 miles", link: null },
-      { name: "Full Body Stretch", detail: "10–15 minutes", link: null },
+      { name: "Brisk Walk", detail: "5–6 miles", link: null },
+      { name: "Full Body Stretch", detail: "10–15 minutes after walk", link: null },
+      { name: "Athlean-X Abs", detail: "5 min ab circuit — choose any free workout on the Athlean-X app or YouTube", link: "https://www.youtube.com/results?search_query=athlean-x+5+minute+ab+workout" },
     ]
   },
   {
     date: "June 26",
     dow: "Friday",
-    title: "Strength A + Run",
+    title: "Strength C + HIIT",
     types: ["strength","run"],
+    note: "Carb day. Leg and core strength first, then HIIT.",
     exercises: [
-      { name: "Push-ups", detail: "4 sets to failure", link: null },
-      { name: "Dumbbell Floor Press", detail: "3 sets × 12 reps", link: null },
-      { name: "Dumbbell Shoulder Press", detail: "3 sets × 12 reps", link: null },
-      { name: "Tricep Kickbacks", detail: "3 sets × 15 reps", link: null },
-      { name: "Plank", detail: "3 sets × 60 seconds", link: null },
-      { name: "Bicycle Crunches", detail: "3 sets × 20 reps", link: null },
-      { name: "Run", detail: "3 miles", link: null },
+      { name: "Goblet Squats", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Romanian Deadlifts", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Reverse Lunges", detail: "3 sets × 6–8 each leg | " + TUT, link: null },
+      { name: "Lateral Lunges", detail: "3 sets × 6–8 each side | " + TUT, link: null },
+      { name: "Leg Raises", detail: "3 sets × 15 reps | slow and controlled", link: null },
+      { name: "Russian Twists (dumbbell)", detail: "3 sets × 20 reps | controlled tempo", link: null },
+      { name: "Side Plank", detail: "3 sets × 30 seconds each side", link: null },
+      { name: "HIIT Circuit", detail: HIIT_NOTE, link: null },
+      { name: "Evening Walk", detail: "1.5 miles — easy pace, enjoy it", link: null },
     ]
   },
   {
     date: "June 27",
     dow: "Saturday",
-    title: "Walk — Rest Day",
-    types: ["walk"],
-    note: "End of week 2. Increase dumbbell weight next week if sessions felt manageable.",
+    title: "Jog + Recovery Walk",
+    types: ["run","walk"],
+    note: "Low carb day. End of week 2. Note strength gains from TUT.",
     exercises: [
-      { name: "Walk", detail: "45 minutes", link: null },
+      { name: "Jog", detail: "4 miles — steady pace", link: null },
+      { name: "Recovery Walk", detail: "3.1 miles — easy pace after jog", link: null },
+      { name: "Light Stretching", detail: "10 minutes", link: null },
     ]
   },
   {
     date: "June 28",
     dow: "Sunday",
-    title: "Walk — Sabbath",
+    title: "Mild Recovery Walk",
     types: ["walk"],
+    note: "Low carb day. Easy pace only. Protect your rest.",
     exercises: [
-      { name: "Easy Walk", detail: "30 minutes", link: null },
+      { name: "Recovery Walk", detail: "1.5–3.1 miles — easy pace", link: null },
     ]
   },
+  // WEEK 3
   {
     date: "June 29",
     dow: "Monday",
-    title: "Strength B + Run",
+    title: "Strength A + HIIT",
     types: ["strength","run"],
-    note: "Increase dumbbell weight by 2–5 lbs if prior sets felt manageable. Progressive overload starts now.",
+    note: "Carb day. Increase dumbbell weight by 2–5 lbs if prior sets felt manageable. Progressive overload.",
     exercises: [
-      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 12 reps", link: null },
-      { name: "Dumbbell Bicep Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Renegade Rows", detail: "3 sets × 8 each side", link: null },
-      { name: "Hammer Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Superman Holds", detail: "3 sets × 10 reps", link: null },
-      { name: "Run", detail: "3–4 miles", link: null },
+      { name: "Push-ups", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Floor Press", detail: "3 sets × 6–10 reps | " + TUT + " — increase weight", link: null },
+      { name: "Dumbbell Shoulder Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Tricep Kickbacks", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Plank", detail: "3 sets × 60–75 seconds", link: null },
+      { name: "Dead Bug", detail: "3 sets × 12 each side | slow and controlled", link: null },
+      { name: "Bicycle Crunches", detail: "3 sets × 25 reps | controlled tempo", link: null },
+      { name: "HIIT Circuit", detail: HIIT_NOTE, link: null },
+      { name: "Evening Walk", detail: "1.5 miles — easy pace, enjoy it", link: null },
     ]
   },
   {
     date: "June 30",
     dow: "Tuesday",
-    title: "Walk + Core Focus",
-    types: ["walk","core"],
+    title: "Walk — Active Recovery",
+    types: ["walk"],
+    note: "Low carb day. Long walk only.",
     exercises: [
-      { name: "Walk", detail: "30–45 minutes", link: null },
+      { name: "Brisk Walk", detail: "5–6 miles", link: null },
+      { name: "Athlean-X Abs", detail: "5 min ab circuit — choose any free workout on the Athlean-X app or YouTube", link: "https://www.youtube.com/results?search_query=athlean-x+5+minute+ab+workout" },
       { name: "Watch: Athlean-X", detail: "\"Abs After 40\" or \"Best Ab Exercises Ranked\"", link: "https://www.youtube.com/results?search_query=athlean-x+abs+after+40" },
-      { name: "Plank Variations", detail: "3 sets × 60 seconds", link: null },
-      { name: "Leg Raises", detail: "3 sets × 15 reps", link: null },
-      { name: "Russian Twists", detail: "3 sets × 20 reps", link: null },
-      { name: "Dead Bug", detail: "3 sets × 12 each side", link: null },
     ]
   },
   {
     date: "July 1",
     dow: "Wednesday",
-    title: "Strength C + Walk",
-    types: ["strength","walk"],
-    note: "Leg and core day. Walk, not run.",
+    title: "Strength B + Jog + Recovery Walk",
+    types: ["strength","run","walk"],
+    note: "Carb day. Strength first, then jog, then recovery walk.",
     exercises: [
-      { name: "Goblet Squats", detail: "4 sets × 15 reps", link: null },
-      { name: "Romanian Deadlifts", detail: "3 sets × 12 reps", link: null },
-      { name: "Reverse Lunges", detail: "3 sets × 10 each leg", link: null },
-      { name: "Lateral Lunges", detail: "3 sets × 10 each side", link: null },
-      { name: "Side Plank with Hip Dip", detail: "3 sets × 12 each side", link: null },
-      { name: "Russian Twists", detail: "3 sets × 20 reps", link: null },
-      { name: "Walk", detail: "30–45 minutes", link: null },
+      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Bicep Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Renegade Rows", detail: "3 sets × 6–8 each side | " + TUT, link: null },
+      { name: "Hammer Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Superman Holds", detail: "3 sets × 10 reps | 2 sec hold at top", link: null },
+      { name: "Jog", detail: "3 miles — steady pace", link: null },
+      { name: "Recovery Walk", detail: "3.1 miles — easy pace after jog", link: null },
     ]
   },
   {
     date: "July 2",
     dow: "Thursday",
-    title: "Run + Stretching",
-    types: ["run"],
-    note: "Week 4. Your cardio base should be noticeably stronger.",
+    title: "Walk — Active Recovery",
+    types: ["walk"],
+    note: "Low carb day. Long walk. Stretch afterward.",
     exercises: [
-      { name: "Run", detail: "4 miles", link: null },
+      { name: "Brisk Walk", detail: "5–6 miles", link: null },
       { name: "Full Body Stretch", detail: "10–15 minutes", link: null },
     ]
   },
   {
     date: "July 3",
     dow: "Friday",
-    title: "Strength A + Run",
+    title: "Strength C + HIIT",
     types: ["strength","run"],
-    note: "Aim higher than week one on push-ups. Increase weight if able.",
+    note: "Carb day. Leg and core strength first, then HIIT. Beat week 1 numbers.",
     exercises: [
-      { name: "Push-ups", detail: "4 sets to failure — beat week 1", link: null },
-      { name: "Dumbbell Floor Press", detail: "3 sets × 12 reps (increase weight)", link: null },
-      { name: "Dumbbell Shoulder Press", detail: "3 sets × 12 reps", link: null },
-      { name: "Tricep Kickbacks", detail: "3 sets × 15 reps", link: null },
-      { name: "Plank", detail: "3 sets × 60 seconds", link: null },
-      { name: "Bicycle Crunches", detail: "3 sets × 25 reps", link: null },
-      { name: "Dead Bug", detail: "3 sets × 12 each side", link: null },
-      { name: "Run", detail: "3 miles", link: null },
+      { name: "Goblet Squats", detail: "4 sets × 6–10 reps | " + TUT + " — increase weight", link: null },
+      { name: "Romanian Deadlifts", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Reverse Lunges", detail: "3 sets × 6–8 each leg | " + TUT, link: null },
+      { name: "Lateral Lunges", detail: "3 sets × 6–8 each side | " + TUT, link: null },
+      { name: "Leg Raises", detail: "3 sets × 15 reps | slow and controlled", link: null },
+      { name: "Russian Twists (dumbbell)", detail: "3 sets × 25 reps | controlled tempo", link: null },
+      { name: "Side Plank", detail: "3 sets × 45 seconds each side", link: null },
+      { name: "HIIT Circuit", detail: HIIT_NOTE, link: null },
+      { name: "Evening Walk", detail: "1.5 miles — easy pace, enjoy it", link: null },
     ]
   },
   {
     date: "July 4",
     dow: "Saturday",
-    title: "Walk — Holiday",
-    types: ["walk"],
-    note: "4th of July. Walk, rest, enjoy the day. Stay the course on nutrition.",
+    title: "Jog + Recovery Walk — Holiday",
+    types: ["run","walk"],
+    note: "4th of July. Stay the course on nutrition. Enjoy the day.",
     exercises: [
-      { name: "Walk", detail: "45 minutes", link: null },
+      { name: "Jog", detail: "4 miles — steady pace", link: null },
+      { name: "Recovery Walk", detail: "3.1 miles — easy pace after jog", link: null },
     ]
   },
   {
     date: "July 5",
     dow: "Sunday",
-    title: "Walk",
+    title: "Mild Recovery Walk",
     types: ["walk"],
+    note: "Low carb day. Easy pace only.",
     exercises: [
-      { name: "Easy Walk", detail: "30–45 minutes", link: null },
+      { name: "Recovery Walk", detail: "1.5–3.1 miles — easy pace", link: null },
     ]
   },
+  // WEEK 4
   {
     date: "July 6",
     dow: "Monday",
-    title: "Strength B + Run",
+    title: "Strength A + HIIT",
     types: ["strength","run"],
-    note: "Push weight up again if prior week felt too easy.",
+    note: "Carb day. Final push week begins. Push weight up again if prior week felt easy.",
     exercises: [
-      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 12 reps", link: null },
-      { name: "Dumbbell Bicep Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Renegade Rows", detail: "3 sets × 8 each side", link: null },
-      { name: "Hammer Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Superman Holds", detail: "3 sets × 10 reps", link: null },
-      { name: "Run", detail: "3–4 miles", link: null },
+      { name: "Push-ups", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Floor Press", detail: "3 sets × 6–10 reps | " + TUT + " — increase weight", link: null },
+      { name: "Dumbbell Shoulder Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Tricep Kickbacks", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Plank", detail: "3 sets × 75–90 seconds", link: null },
+      { name: "Dead Bug", detail: "3 sets × 12 each side | slow and controlled", link: null },
+      { name: "Bicycle Crunches", detail: "3 sets × 25 reps | controlled tempo", link: null },
+      { name: "HIIT Circuit", detail: HIIT_NOTE, link: null },
+      { name: "Evening Walk", detail: "1.5 miles — easy pace, enjoy it", link: null },
     ]
   },
   {
     date: "July 7",
     dow: "Tuesday",
-    title: "Walk + Core Focus",
-    types: ["walk","core"],
+    title: "Walk — Active Recovery",
+    types: ["walk"],
+    note: "Low carb day. Long walk only.",
     exercises: [
-      { name: "Walk", detail: "30–45 minutes", link: null },
+      { name: "Brisk Walk", detail: "5–6 miles", link: null },
+      { name: "Athlean-X Abs", detail: "5 min ab circuit — choose any free workout on the Athlean-X app or YouTube", link: "https://www.youtube.com/results?search_query=athlean-x+5+minute+ab+workout" },
       { name: "Watch: Athlean-X", detail: "\"The Perfect Oblique Workout\"", link: "https://www.youtube.com/results?search_query=athlean-x+perfect+oblique+workout" },
-      { name: "Side Plank Hip Dips", detail: "3 sets × 15 each side", link: null },
-      { name: "Bicycle Crunches", detail: "3 sets × 25 reps", link: null },
-      { name: "Leg Raises", detail: "3 sets × 15 reps", link: null },
-      { name: "Dead Bug", detail: "3 sets × 12 each side", link: null },
     ]
   },
   {
     date: "July 8",
     dow: "Wednesday",
-    title: "Strength C + Walk",
-    types: ["strength","walk"],
-    note: "Leg day. Walk, not run.",
+    title: "Strength B + Jog + Recovery Walk",
+    types: ["strength","run","walk"],
+    note: "Carb day. Strength first, then jog, then recovery walk.",
     exercises: [
-      { name: "Goblet Squats", detail: "4 sets × 15 reps", link: null },
-      { name: "Romanian Deadlifts", detail: "3 sets × 12 reps", link: null },
-      { name: "Reverse Lunges", detail: "3 sets × 10 each leg", link: null },
-      { name: "Lateral Lunges", detail: "3 sets × 10 each side", link: null },
-      { name: "Russian Twists", detail: "3 sets × 20 reps", link: null },
-      { name: "Leg Raises", detail: "3 sets × 15 reps", link: null },
-      { name: "Walk", detail: "30–45 minutes", link: null },
+      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 6–10 reps | " + TUT + " — increase weight", link: null },
+      { name: "Dumbbell Bicep Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Renegade Rows", detail: "3 sets × 6–8 each side | " + TUT, link: null },
+      { name: "Hammer Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Superman Holds", detail: "3 sets × 10 reps | 2 sec hold at top", link: null },
+      { name: "Jog", detail: "3 miles — push the pace", link: null },
+      { name: "Recovery Walk", detail: "3.1 miles — easy pace after jog", link: null },
     ]
   },
   {
     date: "July 9",
     dow: "Thursday",
-    title: "Run + Stretching",
-    types: ["run"],
-    note: "Longest run of the block. Push the pace slightly if your body allows.",
+    title: "Walk — Active Recovery",
+    types: ["walk"],
+    note: "Low carb day. Long walk. Final stretch push.",
     exercises: [
-      { name: "Run", detail: "4 miles — push the pace", link: null },
+      { name: "Brisk Walk", detail: "5–6 miles", link: null },
       { name: "Full Body Stretch", detail: "15 minutes", link: null },
+      { name: "Athlean-X Abs", detail: "5 min ab circuit — choose any free workout on the Athlean-X app or YouTube", link: "https://www.youtube.com/results?search_query=athlean-x+5+minute+ab+workout" },
     ]
   },
   {
     date: "July 10",
     dow: "Friday",
-    title: "Strength A + Run",
+    title: "Strength C + HIIT",
     types: ["strength","run"],
-    note: "Final push week. Increase intensity where you can.",
+    note: "Carb day. Final strength C session. Give everything.",
     exercises: [
-      { name: "Push-ups", detail: "4 sets to failure", link: null },
-      { name: "Dumbbell Floor Press", detail: "3 sets × 12 reps", link: null },
-      { name: "Dumbbell Shoulder Press", detail: "3 sets × 12 reps", link: null },
-      { name: "Tricep Kickbacks", detail: "3 sets × 15 reps", link: null },
-      { name: "Plank", detail: "3 sets × 60–90 seconds", link: null },
-      { name: "Bicycle Crunches", detail: "3 sets × 25 reps", link: null },
-      { name: "Dead Bug", detail: "3 sets × 12 each side", link: null },
-      { name: "Run", detail: "3 miles", link: null },
+      { name: "Goblet Squats", detail: "4 sets × 6–10 reps | " + TUT + " — heaviest weight yet", link: null },
+      { name: "Romanian Deadlifts", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Reverse Lunges", detail: "3 sets × 6–8 each leg | " + TUT, link: null },
+      { name: "Lateral Lunges", detail: "3 sets × 6–8 each side | " + TUT, link: null },
+      { name: "Leg Raises", detail: "3 sets × 15 reps | slow and controlled", link: null },
+      { name: "Russian Twists (dumbbell)", detail: "3 sets × 25 reps | controlled tempo", link: null },
+      { name: "Side Plank", detail: "3 sets × 45–60 seconds each side", link: null },
+      { name: "HIIT Circuit", detail: HIIT_NOTE, link: null },
+      { name: "Evening Walk", detail: "1.5 miles — easy pace, enjoy it", link: null },
     ]
   },
   {
     date: "July 11",
     dow: "Saturday",
-    title: "Walk — Rest Day",
-    types: ["walk"],
+    title: "Jog + Recovery Walk",
+    types: ["run","walk"],
+    note: "Low carb day. Final long cardio day of the block.",
     exercises: [
-      { name: "Walk", detail: "45 minutes", link: null },
+      { name: "Jog", detail: "4 miles — push the pace", link: null },
+      { name: "Recovery Walk", detail: "3.1 miles — easy pace after jog", link: null },
+      { name: "Full Body Stretch", detail: "10–15 minutes", link: null },
     ]
   },
   {
     date: "July 12",
     dow: "Sunday",
-    title: "Walk — Rest Day",
+    title: "Mild Recovery Walk",
     types: ["walk"],
+    note: "Low carb day. Easy pace. Rest and reflect on the work done.",
     exercises: [
-      { name: "Easy Walk", detail: "30 minutes", link: null },
+      { name: "Recovery Walk", detail: "1.5–3.1 miles — easy pace", link: null },
     ]
   },
+  // WEEK 5 — FINAL
   {
     date: "July 13",
     dow: "Monday",
-    title: "Strength B + Run",
+    title: "Strength A + HIIT",
     types: ["strength","run"],
+    note: "Carb day. Second to last training day. Leave it all on the floor.",
     exercises: [
-      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 12 reps", link: null },
-      { name: "Dumbbell Bicep Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Renegade Rows", detail: "3 sets × 8 each side", link: null },
-      { name: "Hammer Curls", detail: "3 sets × 12 reps", link: null },
-      { name: "Superman Holds", detail: "3 sets × 10 reps", link: null },
-      { name: "Run", detail: "3 miles", link: null },
+      { name: "Push-ups", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Floor Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Shoulder Press", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Tricep Kickbacks", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Plank", detail: "3 sets × 90 seconds", link: null },
+      { name: "Dead Bug", detail: "3 sets × 12 each side | slow and controlled", link: null },
+      { name: "Bicycle Crunches", detail: "3 sets × 25 reps | controlled tempo", link: null },
+      { name: "HIIT Circuit", detail: HIIT_NOTE, link: null },
+      { name: "Evening Walk", detail: "1.5 miles — easy pace, enjoy it", link: null },
     ]
   },
   {
     date: "July 14",
     dow: "Tuesday",
-    title: "Walk + Final Core Circuit",
-    types: ["walk","core"],
-    note: "Final core session. No rest between exercises.",
+    title: "Walk — Active Recovery",
+    types: ["walk"],
+    note: "Low carb day. Final long walk of the block.",
     exercises: [
-      { name: "Walk", detail: "30–45 minutes", link: null },
-      { name: "Plank", detail: "3 sets × 60 seconds", link: null },
-      { name: "Dead Bug", detail: "3 sets × 12 each side", link: null },
-      { name: "Bicycle Crunches", detail: "3 sets × 25 reps", link: null },
-      { name: "Leg Raises", detail: "3 sets × 15 reps", link: null },
-      { name: "Russian Twists", detail: "3 sets × 20 reps", link: null },
-      { name: "Side Plank", detail: "3 sets × 45 seconds each side", link: null },
+      { name: "Brisk Walk", detail: "5–6 miles", link: null },
+      { name: "Athlean-X Abs", detail: "5 min ab circuit — choose any free workout on the Athlean-X app or YouTube", link: "https://www.youtube.com/results?search_query=athlean-x+5+minute+ab+workout" },
     ]
   },
   {
     date: "July 15",
     dow: "Wednesday",
-    title: "Strength C + Walk",
-    types: ["strength","walk"],
-    note: "Final strength session of the block.",
+    title: "Strength B + Jog + Recovery Walk",
+    types: ["strength","run","walk"],
+    note: "Carb day. Final strength session of the entire block. Make it count.",
     exercises: [
-      { name: "Goblet Squats", detail: "4 sets × 15 reps", link: null },
-      { name: "Romanian Deadlifts", detail: "3 sets × 12 reps", link: null },
-      { name: "Reverse Lunges", detail: "3 sets × 10 each leg", link: null },
-      { name: "Lateral Lunges", detail: "3 sets × 10 each side", link: null },
-      { name: "Russian Twists", detail: "3 sets × 20 reps", link: null },
-      { name: "Side Plank", detail: "3 sets × 45 seconds each side", link: null },
-      { name: "Walk", detail: "30–45 minutes", link: null },
+      { name: "Dumbbell Bent-Over Rows", detail: "4 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Dumbbell Bicep Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Renegade Rows", detail: "3 sets × 6–8 each side | " + TUT, link: null },
+      { name: "Hammer Curls", detail: "3 sets × 6–10 reps | " + TUT, link: null },
+      { name: "Superman Holds", detail: "3 sets × 10 reps | 2 sec hold at top", link: null },
+      { name: "Jog", detail: "3 miles", link: null },
+      { name: "Recovery Walk", detail: "3.1 miles — easy pace after jog", link: null },
     ]
   },
   {
     date: "July 16",
     dow: "Thursday",
-    title: "Assessment Day — Easy Walk or Light Run",
+    title: "Assessment Day — Walk",
     types: ["walk"],
-    note: "Sabbatical ends. Weigh in. Note how clothes fit, energy levels, strength output. The number is one data point. You will know if you showed up.",
+    note: "Weigh in. Measure. Note how clothes fit, energy levels, strength gains. The number is one data point. You showed up every day. That is the real result.",
     exercises: [
-      { name: "Easy Walk or Light Run", detail: "Your choice today", link: null },
+      { name: "Easy Walk", detail: "5–6 miles — celebratory pace", link: null },
+      { name: "Full Body Stretch", detail: "15 minutes", link: null },
     ]
   },
 ];
