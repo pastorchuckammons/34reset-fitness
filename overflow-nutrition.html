@@ -213,8 +213,10 @@ canvas{width:100%;display:block;}
     </div>
   </div>
   <div class="dtype">
-    <button class="dtype-btn" id="btn-walk" onclick="setDayType('walk')">&#127938; Walk Day &mdash; 170 oz</button>
-    <button class="dtype-btn" id="btn-rest" onclick="setDayType('rest')">&#128564; Rest Day &mdash; 128 oz</button>
+    <button class="dtype-btn" id="btn-walk" onclick="setWaterType('walk')">&#127938; Walk Day &mdash; 170 oz</button>
+    <button class="dtype-btn" id="btn-rest" onclick="setWaterType('rest')">&#128564; Rest Day &mdash; 128 oz</button>
+    <button class="dtype-btn" id="btn-low" onclick="setCalType('low')" style="margin-top:6px;">&#128308; Low Cal &mdash; 1,600</button>
+    <button class="dtype-btn" id="btn-high" onclick="setCalType('high')" style="margin-top:6px;">&#128994; High Cal &mdash; 1,850</button>
   </div>
   <div class="mbar">
     <div class="mpill">
@@ -308,7 +310,8 @@ canvas{width:100%;display:block;}
   <div class="sec-title">Settings</div>
   <div class="card" style="margin-bottom:10px;">
     <div style="padding:11px 14px;border-bottom:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Daily Targets</div>
-    <div class="set-row"><div class="set-lbl">Calories</div><input class="set-inp" type="number" id="si-cal" value="1850"></div>
+    <div class="set-row"><div class="set-lbl">Low Cal Target</div><input class="set-inp" type="number" id="si-cal-low" value="1600"></div>
+    <div class="set-row"><div class="set-lbl">High Cal Target</div><input class="set-inp" type="number" id="si-cal-high" value="1850"></div>
     <div class="set-row"><div class="set-lbl">Protein (g)</div><input class="set-inp" type="number" id="si-pro" value="140"></div>
     <div class="set-row"><div class="set-lbl">Walk day water (oz)</div><input class="set-inp" type="number" id="si-ww" value="170"></div>
     <div class="set-row"><div class="set-lbl">Rest day water (oz)</div><input class="set-inp" type="number" id="si-wr" value="128"></div>
@@ -400,58 +403,67 @@ var MEAL_DEFS = [
   {id:"breakfast",name:"Breakfast",color:"#f0c040",vit:true,
    items:[
     {name:"3 Eggs",desc:"Any style",cal:210,pro:18},
-    {name:"Genoa Salami x5",desc:"Aldi ~28g",cal:120,pro:6},
-    {name:"Sourdough Toast",desc:"1 slice",cal:120,pro:4},
+    {name:"Chicken Links",desc:"Turkey/chicken links ~2 links",cal:100,pro:9},
+    {name:"Cheese Stick",desc:"String cheese",cal:80,pro:5},
+    {name:"Ezekiel Bread",desc:"1 slice — high calorie days only",cal:80,pro:5,highCalOnly:true},
     {name:"Banana",desc:"Medium",cal:105,pro:1},
     {name:"Black Coffee",desc:"1 cup",cal:5,pro:0}
   ]},
   {id:"lunch",name:"Lunch",color:"#4caf82",vit:true,
    items:[
     {name:"Mixed Greens Salad",desc:"2 cups",cal:20,pro:2},
-    {name:"Cooked Ham",desc:"4 oz",cal:120,pro:20},
     {name:"Light Olive Oil Dressing",desc:"1 tbsp",cal:60,pro:0},
+    {name:"Turkey Lunch Meat",desc:"2 oz nitrate-free",cal:60,pro:9},
     {name:"Orange",desc:"Medium",cal:65,pro:1},
-    {name:"Applesauce Pack",desc:"No sugar added",cal:50,pro:0},
-    {name:"Cashews",desc:"1 oz",cal:160,pro:5}
+    {name:"Apple",desc:"Medium whole",cal:100,pro:1},
+    {name:"Walnuts",desc:"1/4 cup",cal:200,pro:5}
   ]},
   {id:"snack",name:"Afternoon Snack",color:"#a78bfa",vit:false,
    items:[
-    {name:"Plain Greek Yogurt",desc:"3/4 cup",cal:130,pro:17},
+    {name:"Friendly Farms Greek Yogurt",desc:"Aldi — single serve",cal:90,pro:14},
     {name:"Blueberries",desc:"1/4 cup",cal:20,pro:0}
   ]},
   {id:"dinner",name:"Dinner",color:"#4a90d9",vit:true,
    items:[
-    {name:"Cooked Rice",desc:"1/2 cup",cal:105,pro:2},
     {name:"Chicken Breast",desc:"6 oz",cal:185,pro:35},
-    {name:"Broccoli",desc:"1 cup steamed",cal:55,pro:4}
+    {name:"Broccoli",desc:"1 cup steamed",cal:55,pro:4},
+    {name:"Brown Rice",desc:"1/2 cup cooked — high calorie days only",cal:108,pro:3,highCalOnly:true}
   ]},
   {id:"evening",name:"Evening Snack",color:"#e8703a",vit:false,
    items:[
-    {name:"Peanut Butter",desc:"1 tbsp",cal:90,pro:4}
+    {name:"Cottage Cheese",desc:"1/2 cup",cal:90,pro:14}
   ]}
 ];
 
 var SAVED_DEFS = [
-  {name:"3 Eggs",desc:"Whole eggs",cal:210,pro:18},
-  {name:"Genoa Salami x5",desc:"Aldi ~28g",cal:120,pro:6},
+  {name:"3 Eggs",desc:"Any style",cal:210,pro:18},
+  {name:"Chicken Links",desc:"~2 links",cal:100,pro:9},
+  {name:"Cheese Stick",desc:"String cheese",cal:80,pro:5},
+  {name:"Ezekiel Bread",desc:"1 slice",cal:80,pro:5},
   {name:"Sourdough Toast",desc:"1 slice",cal:120,pro:4},
   {name:"Banana",desc:"Medium",cal:105,pro:1},
-  {name:"Cooked Ham 4oz",desc:"",cal:120,pro:20},
   {name:"Mixed Greens Salad",desc:"2 cups",cal:20,pro:2},
-  {name:"Cashews 1oz",desc:"",cal:160,pro:5},
-  {name:"Plain Greek Yogurt",desc:"3/4 cup",cal:130,pro:17},
-  {name:"Chicken Breast 6oz",desc:"",cal:185,pro:35},
-  {name:"Cooked Rice 1/2 cup",desc:"",cal:105,pro:2},
-  {name:"Broccoli 1 cup",desc:"Steamed",cal:55,pro:4},
-  {name:"Peanut Butter 1 tbsp",desc:"",cal:90,pro:4},
-  {name:"Whey Protein Shake",desc:"1 scoop",cal:130,pro:25},
-  {name:"Cottage Cheese 1/2 cup",desc:"",cal:90,pro:14}
+  {name:"Light Olive Oil Dressing",desc:"1 tbsp",cal:60,pro:0},
+  {name:"Turkey Lunch Meat",desc:"2 oz nitrate-free",cal:60,pro:9},
+  {name:"Orange",desc:"Medium",cal:65,pro:1},
+  {name:"Apple",desc:"Medium whole",cal:100,pro:1},
+  {name:"Walnuts",desc:"1/4 cup",cal:200,pro:5},
+  {name:"Friendly Farms Greek Yogurt",desc:"Aldi single serve",cal:90,pro:14},
+  {name:"Blueberries",desc:"1/4 cup",cal:20,pro:0},
+  {name:"Chicken Breast",desc:"6 oz",cal:185,pro:35},
+  {name:"Broccoli",desc:"1 cup steamed",cal:55,pro:4},
+  {name:"Brown Rice",desc:"1/2 cup cooked",cal:108,pro:3},
+  {name:"Cottage Cheese",desc:"1/2 cup",cal:90,pro:14},
+  {name:"Whey Protein Shake",desc:"1 scoop with water",cal:130,pro:25},
+  {name:"Almonds",desc:"1 oz",cal:160,pro:6},
+  {name:"Cooked Ham",desc:"4 oz",cal:120,pro:20},
+  {name:"Cashews",desc:"1 oz",cal:160,pro:5}
 ];
 
 // STATE
 var curDate = todayStr();
 var db = {};
-var settings = {cal:1850,pro:140,ww:170,wr:128,gw:160,api:""};
+var settings = {cal:1850,calLow:1600,calHigh:1850,pro:140,ww:170,wr:128,gw:160,api:""};
 var savedFoods = [];
 var weights = [];
 var openMeals = {breakfast:true,lunch:false,snack:false,dinner:false,evening:false};
@@ -505,18 +517,26 @@ function persist(){
 
 function getDay(s){
   if(!db[s]){
+    var isHigh=(db[s]&&db[s].dayType==="high")||false;
     db[s]={
       meals:JSON.parse(JSON.stringify(MEAL_DEFS)).map(function(m){
-        return {id:m.id,name:m.name,color:m.color,vit:m.vit,items:m.items.map(function(i){return Object.assign({on:true},i);})};
+        return {id:m.id,name:m.name,color:m.color,vit:m.vit,items:m.items.map(function(i){
+          var on=i.highCalOnly?false:true;
+          return Object.assign({on:on},i);
+        })};
       }),
-      water:0,dayType:"walk",vitamins:{}
+      water:0,dayType:"low",vitamins:{}
     };
   }
   return db[s];
 }
 
 function waterTarget(day){
-  return day.dayType==="rest"?settings.wr:settings.ww;
+  return day.waterType==="rest"?settings.wr:settings.ww;
+}
+
+function calTarget(day){
+  return day.dayType==="high"?settings.calHigh:settings.calLow;
 }
 
 // HEADER
@@ -524,19 +544,22 @@ function updateHeader(){
   var day=getDay(curDate);
   var cal=0,pro=0;
   day.meals.forEach(function(m){m.items.forEach(function(i){if(i.on){cal+=i.cal;pro+=i.pro;}});});
-  var wt=waterTarget(day);
+  var wt=day.waterType==="rest"?settings.wr:settings.ww;
+  var ct=day.calType==="high"?settings.calHigh:settings.calLow;
   document.getElementById("dlabel").textContent=fmtDate(curDate);
   document.getElementById("hcal").textContent=cal;
-  document.getElementById("hcal-t").textContent="of "+settings.cal;
+  document.getElementById("hcal-t").textContent="of "+ct;
   document.getElementById("hpro").textContent=pro+"g";
   document.getElementById("hpro-t").textContent="of "+settings.pro+"g";
   document.getElementById("hwat").textContent=day.water+"oz";
   document.getElementById("hwat-t").textContent="of "+wt+"oz";
-  document.getElementById("bcal").style.width=Math.min(cal/settings.cal*100,100)+"%";
+  document.getElementById("bcal").style.width=Math.min(cal/ct*100,100)+"%";
   document.getElementById("bpro").style.width=Math.min(pro/settings.pro*100,100)+"%";
   document.getElementById("bwat").style.width=Math.min(day.water/wt*100,100)+"%";
-  document.getElementById("btn-walk").className="dtype-btn"+(day.dayType==="walk"?" aw":"");
-  document.getElementById("btn-rest").className="dtype-btn"+(day.dayType==="rest"?" ar":"");
+  document.getElementById("btn-walk").className="dtype-btn"+(day.waterType==="walk"?" aw":"");
+  document.getElementById("btn-rest").className="dtype-btn"+(day.waterType==="rest"?" ar":"");
+  document.getElementById("btn-low").className="dtype-btn"+(day.calType!=="high"?" ar":"");
+  document.getElementById("btn-high").className="dtype-btn"+(day.calType==="high"?" aw":"");
 }
 
 // MEALS
@@ -784,6 +807,24 @@ function resetWater(){
   getDay(curDate).water=0;persist();renderWater();
 }
 
+function setWaterType(t){
+  var day=getDay(curDate);
+  day.waterType=t;
+  persist();updateHeader();renderWater();
+}
+
+function setCalType(t){
+  var day=getDay(curDate);
+  day.calType=t;
+  // auto-toggle highCalOnly items
+  day.meals.forEach(function(m){
+    m.items.forEach(function(i){
+      if(i.highCalOnly) i.on=(t==="high");
+    });
+  });
+  persist();updateHeader();renderMeals();
+}
+
 function setDayType(t){
   getDay(curDate).dayType=t;persist();updateHeader();renderWater();
 }
@@ -929,7 +970,8 @@ function confirmSave(){
 
 // SETTINGS
 function loadSettings(){
-  document.getElementById("si-cal").value=settings.cal;
+  document.getElementById("si-cal-low").value=settings.calLow||1600;
+  document.getElementById("si-cal-high").value=settings.calHigh||1850;
   document.getElementById("si-pro").value=settings.pro;
   document.getElementById("si-ww").value=settings.ww;
   document.getElementById("si-wr").value=settings.wr;
@@ -938,7 +980,9 @@ function loadSettings(){
 }
 
 function saveSettings(){
-  settings.cal=parseInt(document.getElementById("si-cal").value)||1850;
+  settings.calLow=parseInt(document.getElementById("si-cal-low").value)||1600;
+  settings.calHigh=parseInt(document.getElementById("si-cal-high").value)||1850;
+  settings.cal=settings.calHigh;
   settings.pro=parseInt(document.getElementById("si-pro").value)||140;
   settings.ww=parseInt(document.getElementById("si-ww").value)||170;
   settings.wr=parseInt(document.getElementById("si-wr").value)||128;
